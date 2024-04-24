@@ -6,6 +6,10 @@ The classifier undergoes a fine-tuning process using a small, curated dataset co
 
 This approach not only simplifies the development of an effective classification tool but also ensures that the system is relatively lightweight and fast, making it ideal for integration into larger systems where quick, accurate classification of bottles and cans is required.
 
+## Dataset
+
+The dataset is from the Kaggle dataset [here](https://www.kaggle.com/datasets/moezabid/bottles-and-cans). The dataset contains images of bottles and cans, which are the two classes that the classifier is designed to distinguish between. The dataset is divided into two folders, one for each class, with each folder containing images of the respective objects. The images are of varying sizes and qualities, reflecting the diversity of real-world scenarios where the classifier might be deployed.
+
 ## Technologies Used
 
 [![Python](./asset/Python.png)](https://twitter.com/sawaratsuki1004)
