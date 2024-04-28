@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmail.com
 Date: 2024-04-24 18:46:29
 LastEditors: hibana2077 hibana2077@gmail.com
-LastEditTime: 2024-04-27 00:00:09
+LastEditTime: 2024-04-28 13:07:24
 FilePath: \Bottles-and-Cans-classifier\src\train\main.py
 Description:
 '''
@@ -39,29 +39,17 @@ for x, y in data_loader:
     break
 
 # define model
-class VanillaCNN(nn.Module):
+from torchvision.models import regnet_y_32gf
+class RegNetY32GF(nn.Module):
     def __init__(self):
-        super(VanillaCNN, self).__init__()
-        self.conv1 = nn.Conv2d(3, 32, 3, padding=1)
-        self.conv2 = nn.Conv2d(32, 64, 3, padding=1)
-        self.conv3 = nn.Conv2d(64, 128, 3, padding=1)
-        self.fc1 = nn.Linear(32768, 1024)
-        self.fc2 = nn.Linear(1024, 7)
-        self.relu = nn.ReLU()
-        self.maxpool = nn.MaxPool2d(2)
-        self.flatten = nn.Flatten()
+        super(RegNetY32GF, self).__init__()
+        self.regnet = regnet_y_32gf()
+        self.regnet.fc = nn.Linear(3712, 4096)
+        self.last_layer = nn.Linear(4096, 7)
 
     def forward(self, x):
-        x = self.relu(self.conv1(x))
-        x = self.maxpool(x)
-        x = self.relu(self.conv2(x))
-        x = self.maxpool(x)
-        x = self.relu(self.conv3(x))
-        x = self.maxpool(x)
-        x = self.flatten(x)
-        x = self.relu(self.fc1(x))
-        x = self.fc2(x)
-        return x
+        x = self.regnet(x)
+        return self.last_layer(x)
     
 # split dataset into train and test
 n = len(dataset)
@@ -79,7 +67,7 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 print(f'device: {device}')
 
 # define model
-model = EfficientNetV2S().to(device)
+model = RegNetY32GF().to(device)
 
 # define loss function
 criterion = nn.BCEWithLogitsLoss()
