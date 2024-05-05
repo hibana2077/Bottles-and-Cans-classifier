@@ -1,3 +1,12 @@
 data/archive.zip
 data/extracted/
+data/archive/
+mlhw4/
 # *.ipynb
+src/train/model_state_dict_2.pth
+src/train/model_state_dict.pth
+src/train/model.pth
+src/web/best.pt
+src/web/oop.py
+src/web/records.csv
+src/web/reg.py
