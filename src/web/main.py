@@ -6,6 +6,8 @@ import torchvision
 import numpy as np
 from reg import EfficientNetV2S # model need to be defined in reg.py
 
+LABELS = ['Bottle', 'Can']
+
 @st.cache_data
 def load_model():
     model = torch.load('model.pt')
@@ -35,4 +37,4 @@ if img_file_buffer is not None:
     with torch.no_grad():
         outputs = model(img_tensor)
         _, predicted = torch.max(outputs, 1)
-    st.write(predicted.item())
+    st.write(LABELS[predicted.item()])
