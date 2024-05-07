@@ -1,11 +1,13 @@
 import streamlit as st
 from PIL import Image
+import requests
 import numpy as np
 import torch
 import torchvision
 import numpy as np
 from reg import EfficientNetV2S # model need to be defined in reg.py
 
+THINGSPEAK_URL = 'https://api.thingspeak.com/'
 LABELS = ['Bottle', 'Can']
 
 @st.cache_data
