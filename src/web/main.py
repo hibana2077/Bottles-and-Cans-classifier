@@ -40,3 +40,6 @@ if img_file_buffer is not None:
         outputs = model(img_tensor)
         _, predicted = torch.max(outputs, 1)
     st.write(LABELS[predicted.item()])
+
+    ## Send data to ThingSpeak
+    ### TBW
