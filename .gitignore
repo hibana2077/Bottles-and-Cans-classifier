@@ -10,3 +10,4 @@ src/web/best.pt
 src/web/oop.py
 src/web/records.csv
 src/web/reg.py
+src/web/predictions.db
