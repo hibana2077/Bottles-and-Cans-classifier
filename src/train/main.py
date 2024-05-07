@@ -2,7 +2,7 @@
 Author: hibana2077 hibana2077@gmail.com
 Date: 2024-04-24 18:46:29
 LastEditors: hibana2077 hibana2077@gmail.com
-LastEditTime: 2024-04-28 13:07:24
+LastEditTime: 2024-05-07 23:54:27
 FilePath: \Bottles-and-Cans-classifier\src\train\main.py
 Description:
 '''
@@ -27,7 +27,7 @@ transform = torchvision.transforms.Compose([
 ])
 # target_transform -> one-hot encoding
 target_transform = torchvision.transforms.Compose([
-    torchvision.transforms.Lambda(lambda y: torch.zeros(7, dtype=torch.float).scatter_(0, torch.tensor(y), value=1))
+    torchvision.transforms.Lambda(lambda y: torch.zeros(2, dtype=torch.float).scatter_(0, torch.tensor(y), value=1))
 ])
 dataset = torchvision.datasets.ImageFolder(root=CONFIG['data_loc']['root'], transform=transform, target_transform=target_transform)
 
